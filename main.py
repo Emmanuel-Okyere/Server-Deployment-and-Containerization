@@ -79,8 +79,7 @@ def auth():
     body = {'email': email, 'password': password}
 
     user_data = body
-
-    return jsonify(token=_get_jwt(user_data).decode('utf-8'))
+    return jsonify(token=_get_jwt(user_data).decode("utf-8"))
 
 
 @APP.route('/contents', methods=['GET'])
@@ -88,7 +87,7 @@ def decode_jwt():
     """
     Check user token and return non-secret data
     """
-    if not 'Authorization' in request.headers:
+    if 'Authorization' not in request.headers:
         abort(401)
     data = request.headers['Authorization']
     token = str.replace(str(data), 'Bearer ', '')
